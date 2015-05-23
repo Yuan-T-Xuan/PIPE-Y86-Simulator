@@ -18,12 +18,12 @@
 	int f_stat, f_icode, f_ifun, f_rA, f_rB;
 	int f_valC, f_valP;
 	//the inst memory
-	NSMutableDictionary *iMemory;	//key: NSNumBer(int) value: NSNumber(int)
+	NSMutableDictionary *iMemory;	//key: NSNumBer(int) value: NSString
 }
 - (void) InitInstructionMemory: (NSString *) FilePath;
 - (void) GetData: (int) iPredPC M_valA: (int) iM_valA
 	  W_valM: (int) iW_valM M_Cnd: (int) iM_Cnd M_icode: (int) iM_icode
 	   M_Bch: (int) iM_Bch W_icode: (int) iW_icode;
 - (void) Calculate;
-- (void) WriteData;	//not completed
+- (void) WriteData: (NSMutableDictionary *) D_Register;
 @end

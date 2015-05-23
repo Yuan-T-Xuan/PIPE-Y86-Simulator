@@ -16,5 +16,8 @@ int main(int argc, const char * argv[]) {
 	[dict setObject:@"A String" forKey:[NSNumber numberWithInt:1]];
 	NSString *str;
 	str = [dict objectForKey:[NSNumber numberWithInt:1]];
+	NSNumber* anum = [NSNumber numberWithInt:1];
+	int hehe = [anum intValue];
+	printf("%d\n", hehe);
 	return 0;
 }
