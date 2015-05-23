@@ -12,6 +12,7 @@
 		13011EF11B105D4100ED3BF2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13011EF01B105D4100ED3BF2 /* Images.xcassets */; };
 		13011EF41B105D4100ED3BF2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13011EF21B105D4100ED3BF2 /* MainMenu.xib */; };
 		13011F001B105D4100ED3BF2 /* PIPE_Y86Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13011EFF1B105D4100ED3BF2 /* PIPE_Y86Tests.m */; };
+		13011F0B1B106C9F00ED3BF2 /* FetchPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13011F0A1B106C9F00ED3BF2 /* FetchPart.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +36,8 @@
 		13011EF91B105D4100ED3BF2 /* PIPE-Y86Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "PIPE-Y86Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13011EFE1B105D4100ED3BF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13011EFF1B105D4100ED3BF2 /* PIPE_Y86Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PIPE_Y86Tests.m; sourceTree = "<group>"; };
+		13011F091B106C9F00ED3BF2 /* FetchPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchPart.h; sourceTree = "<group>"; };
+		13011F0A1B106C9F00ED3BF2 /* FetchPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchPart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,8 @@
 				13011EF01B105D4100ED3BF2 /* Images.xcassets */,
 				13011EF21B105D4100ED3BF2 /* MainMenu.xib */,
 				13011EE91B105D4100ED3BF2 /* Supporting Files */,
+				13011F091B106C9F00ED3BF2 /* FetchPart.h */,
+				13011F0A1B106C9F00ED3BF2 /* FetchPart.m */,
 			);
 			path = "PIPE-Y86";
 			sourceTree = "<group>";
@@ -210,6 +215,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13011F0B1B106C9F00ED3BF2 /* FetchPart.m in Sources */,
 				13011EEF1B105D4100ED3BF2 /* main.m in Sources */,
 				13011EED1B105D4100ED3BF2 /* AppDelegate.m in Sources */,
 			);
