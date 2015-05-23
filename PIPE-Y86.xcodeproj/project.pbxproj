@@ -38,6 +38,7 @@
 		13011EFF1B105D4100ED3BF2 /* PIPE_Y86Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PIPE_Y86Tests.m; sourceTree = "<group>"; };
 		13011F091B106C9F00ED3BF2 /* FetchPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchPart.h; sourceTree = "<group>"; };
 		13011F0A1B106C9F00ED3BF2 /* FetchPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchPart.m; sourceTree = "<group>"; };
+		13011F0C1B107BF000ED3BF2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +87,7 @@
 				13011EE91B105D4100ED3BF2 /* Supporting Files */,
 				13011F091B106C9F00ED3BF2 /* FetchPart.h */,
 				13011F0A1B106C9F00ED3BF2 /* FetchPart.m */,
+				13011F0C1B107BF000ED3BF2 /* Constants.h */,
 			);
 			path = "PIPE-Y86";
 			sourceTree = "<group>";

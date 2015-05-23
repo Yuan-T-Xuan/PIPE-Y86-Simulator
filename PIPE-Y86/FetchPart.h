@@ -7,7 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 
 @interface FetchPart : NSObject
-
+{
+	//for input
+	int PredPC, M_valA, W_valM, M_Cnd;
+	int M_icode, M_Bch, W_icode;
+	//for output
+	int f_stat, f_icode, f_ifun, f_rA, f_rB;
+	int f_valC, f_valP;
+	//the inst memory
+	NSMutableDictionary *iMemory;	//key: NSNumBer(int) value: NSNumber(int)
+}
+- (void) InitInstructionMemory: (NSString *) FilePath;
+- (void) GetData: (int) iPredPC M_valA: (int) iM_valA
+	  W_valM: (int) iW_valM M_Cnd: (int) iM_Cnd M_icode: (int) iM_icode
+	   M_Bch: (int) iM_Bch W_icode: (int) iW_icode;
+- (void) Calculate;
+- (void) WriteData;	//not completed
 @end

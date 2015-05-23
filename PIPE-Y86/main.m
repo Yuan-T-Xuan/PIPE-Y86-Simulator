@@ -11,7 +11,10 @@
 int main(int argc, const char * argv[]) {
 	//return NSApplicationMain(argc, argv);
 	//
-	NSString* test;
-	test = @"Hello World.";
+	NSMutableDictionary *dict;
+	dict = [NSMutableDictionary dictionaryWithCapacity:100];
+	[dict setObject:@"A String" forKey:[NSNumber numberWithInt:1]];
+	NSString *str;
+	str = [dict objectForKey:[NSNumber numberWithInt:1]];
 	return 0;
 }
