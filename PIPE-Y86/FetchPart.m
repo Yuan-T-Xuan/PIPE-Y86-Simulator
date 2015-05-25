@@ -15,13 +15,12 @@
 
 - (void) GetData: (int) iPredPC M_valA: (int) iM_valA
 	  W_valM: (int) iW_valM M_Cnd: (int) iM_Cnd M_icode: (int) iM_icode
-	   M_Bch: (int) iM_Bch W_icode: (int) iW_icode {
+	   W_icode: (int) iW_icode {
 	self->PredPC = iPredPC;
 	self->M_valA = iM_valA;
 	self->W_valM = iW_valM;
 	self->M_Cnd = iM_Cnd;
 	self->M_icode = iM_icode;
-	self->M_Bch = iM_Bch;
 	self->W_icode = iW_icode;
 }
 
