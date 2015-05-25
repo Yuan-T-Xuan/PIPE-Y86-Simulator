@@ -20,6 +20,7 @@
 	//the inst memory
 	NSMutableDictionary *iMemory;	//key: NSNumBer(int) value: NSString
 }
+@property NSMutableDictionary* iMemory;
 - (void) InitInstructionMemory: (NSString *) FilePath;
 - (void) GetData: (int) iPredPC M_valA: (int) iM_valA
 	  W_valM: (int) iW_valM M_Cnd: (int) iM_Cnd M_icode: (int) iM_icode

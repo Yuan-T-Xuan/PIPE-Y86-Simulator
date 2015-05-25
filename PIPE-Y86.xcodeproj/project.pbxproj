@@ -13,6 +13,7 @@
 		13011EF41B105D4100ED3BF2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13011EF21B105D4100ED3BF2 /* MainMenu.xib */; };
 		13011F001B105D4100ED3BF2 /* PIPE_Y86Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 13011EFF1B105D4100ED3BF2 /* PIPE_Y86Tests.m */; };
 		13011F0B1B106C9F00ED3BF2 /* FetchPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13011F0A1B106C9F00ED3BF2 /* FetchPart.m */; };
+		13304D631B136A1000EE2EBB /* MemoryPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13304D621B136A1000EE2EBB /* MemoryPart.m */; };
 		13C3DD3C1B13239D00FB3C3B /* DecodePart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C3DD3B1B13239D00FB3C3B /* DecodePart.m */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,8 @@
 		13011F091B106C9F00ED3BF2 /* FetchPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchPart.h; sourceTree = "<group>"; };
 		13011F0A1B106C9F00ED3BF2 /* FetchPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchPart.m; sourceTree = "<group>"; };
 		13011F0C1B107BF000ED3BF2 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		13304D611B136A1000EE2EBB /* MemoryPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryPart.h; sourceTree = "<group>"; };
+		13304D621B136A1000EE2EBB /* MemoryPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryPart.m; sourceTree = "<group>"; };
 		13C3DD3A1B13239D00FB3C3B /* DecodePart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodePart.h; sourceTree = "<group>"; };
 		13C3DD3B1B13239D00FB3C3B /* DecodePart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodePart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,16 +86,18 @@
 		13011EE81B105D4100ED3BF2 /* PIPE-Y86 */ = {
 			isa = PBXGroup;
 			children = (
+				13011EF01B105D4100ED3BF2 /* Images.xcassets */,
+				13011EE91B105D4100ED3BF2 /* Supporting Files */,
 				13011EEB1B105D4100ED3BF2 /* AppDelegate.h */,
 				13011EEC1B105D4100ED3BF2 /* AppDelegate.m */,
-				13011EF01B105D4100ED3BF2 /* Images.xcassets */,
 				13011EF21B105D4100ED3BF2 /* MainMenu.xib */,
-				13011EE91B105D4100ED3BF2 /* Supporting Files */,
 				13011F091B106C9F00ED3BF2 /* FetchPart.h */,
 				13011F0A1B106C9F00ED3BF2 /* FetchPart.m */,
 				13011F0C1B107BF000ED3BF2 /* Constants.h */,
 				13C3DD3A1B13239D00FB3C3B /* DecodePart.h */,
 				13C3DD3B1B13239D00FB3C3B /* DecodePart.m */,
+				13304D611B136A1000EE2EBB /* MemoryPart.h */,
+				13304D621B136A1000EE2EBB /* MemoryPart.m */,
 			);
 			path = "PIPE-Y86";
 			sourceTree = "<group>";
@@ -225,6 +230,7 @@
 				13011F0B1B106C9F00ED3BF2 /* FetchPart.m in Sources */,
 				13011EEF1B105D4100ED3BF2 /* main.m in Sources */,
 				13C3DD3C1B13239D00FB3C3B /* DecodePart.m in Sources */,
+				13304D631B136A1000EE2EBB /* MemoryPart.m in Sources */,
 				13011EED1B105D4100ED3BF2 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

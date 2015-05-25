@@ -9,6 +9,8 @@
 #import "FetchPart.h"
 
 @implementation FetchPart
+@synthesize iMemory;
+
 - (void) InitInstructionMemory: (NSString *) FilePath {
 	//to be completed...
 }
