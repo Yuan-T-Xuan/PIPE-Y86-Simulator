@@ -24,7 +24,7 @@
 - (void) InitInstructionMemory: (NSString *) FilePath;
 - (void) GetData: (int) iPredPC M_valA: (int) iM_valA
 	  W_valM: (int) iW_valM M_Cnd: (int) iM_Cnd M_icode: (int) iM_icode
-	   W_icode: (int) iW_icode;
+	 W_icode: (int) iW_icode;
 - (void) Calculate;
 - (void) WriteData: (NSMutableDictionary *) D_Register;
 @end
