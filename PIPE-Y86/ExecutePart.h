@@ -21,6 +21,7 @@
 }
 @property (readonly) int e_valE;
 @property (readonly) int e_dstE;
+- (id) init;
 - (void) GetData: (NSMutableDictionary *) E_Register
 	  W_stat: (int) iW_stat m_stat: (int) im_stat;
 - (void) Calculate;

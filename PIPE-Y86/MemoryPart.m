@@ -12,6 +12,13 @@
 @synthesize m_valM;
 @synthesize dMemory;
 
+- (id) initWithMemory: (NSMutableDictionary*) Memory {
+	if (self = [super init]) {
+		dMemory = Memory;
+	}
+	return self;
+}
+
 - (void) GetData: (NSMutableDictionary *) M_Register {
 	M_stat = [[M_Register objectForKey:@"stat"] intValue];
 	M_icode = [[M_Register objectForKey:@"icode"] intValue];

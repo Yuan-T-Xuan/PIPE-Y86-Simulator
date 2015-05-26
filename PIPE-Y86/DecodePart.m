@@ -9,6 +9,19 @@
 #import "DecodePart.h"
 
 @implementation DecodePart
+@synthesize RegisterFile;
+
+- (id) init {
+	if (self = [super init]) {
+		RegisterFile = RF;
+		int i;
+		for (i = 0; i < 8; i++) {
+			RegisterFile[i] = 0;
+		}
+	}
+	return self;
+}
+
 - (void) GetData: (NSMutableDictionary *) D_Register
 	  e_dstE: (int) ie_dstE e_valE: (int) ie_valE
 	  M_dstE: (int) iM_dstE M_valE: (int) iM_valE

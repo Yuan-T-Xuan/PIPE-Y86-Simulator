@@ -19,8 +19,12 @@
 	int d_stat, d_icode, d_ifun, d_valC, d_valA;
 	int d_valB, d_dstE, d_dstM, d_srcA, d_srcB;
 	//the Register File
-	int RegisterFile[8];
+	int RF[8];
+	int* RegisterFile;
 }
+@property int* RegisterFile;
+//have a default constructor for initiating the Register File
+- (id) init;
 - (void) GetData: (NSMutableDictionary *) D_Register
 	  e_dstE: (int) ie_dstE e_valE: (int) ie_valE
 	  M_dstE: (int) iM_dstE M_valE: (int) iM_valE

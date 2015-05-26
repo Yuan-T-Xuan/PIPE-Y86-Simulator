@@ -22,6 +22,7 @@
 }
 @property (readonly) int m_valM;
 @property NSMutableDictionary* dMemory;
+- (id) initWithMemory: (NSMutableDictionary*) Memory;
 - (void) GetData: (NSMutableDictionary *) M_Register;
 - (void) Calculate;
 - (void) WriteData: (NSMutableDictionary *) W_Register;

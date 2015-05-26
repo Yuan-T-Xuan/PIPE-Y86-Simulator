@@ -12,6 +12,16 @@
 @synthesize e_valE;
 @synthesize e_dstE;
 
+- (id) init {
+	if (self = [super init]) {
+		e_valE = 0;
+		e_dstE = RNONE;
+		CC_ZF = 0;
+		CC_SF = 0;
+	}
+	return self;
+}
+
 - (void) GetData: (NSMutableDictionary *) E_Register
 	  W_stat: (int) iW_stat m_stat: (int) im_stat {
 	E_stat = [[E_Register objectForKey:@"stat"] intValue];

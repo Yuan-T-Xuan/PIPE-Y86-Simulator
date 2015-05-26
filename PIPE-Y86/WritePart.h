@@ -14,6 +14,7 @@
 	//for writing back
 	int W_valE, W_valM, W_dstE, W_dstM;
 }
+//no need for a constructor
 - (void) GetData: (NSMutableDictionary *) W_Register;
 - (void) WriteData: (int *) RegisterFile;
 //Register file is written as a part of decode unit.
