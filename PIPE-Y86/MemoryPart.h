@@ -20,6 +20,7 @@
 	NSMutableDictionary *dMemory;	//key: NSNumBer(int) value: NSNumBer(int)
 	//actually it will share the same memory space with iMemory
 }
+@property (readonly) int m_stat;
 @property (readonly) int m_valM;
 @property NSMutableDictionary* dMemory;
 - (id) initWithMemory: (NSMutableDictionary*) Memory;

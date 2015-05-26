@@ -19,6 +19,7 @@
 	//stored CC
 	int CC_ZF, CC_SF;
 }
+@property (readonly) int e_Cnd;
 @property (readonly) int e_valE;
 @property (readonly) int e_dstE;
 - (id) init;

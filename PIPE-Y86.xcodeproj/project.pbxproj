@@ -16,6 +16,7 @@
 		132D66741B1410F300EFA836 /* ExecutePart.m in Sources */ = {isa = PBXBuildFile; fileRef = 132D66731B1410F300EFA836 /* ExecutePart.m */; };
 		132D66771B142C2E00EFA836 /* WritePart.m in Sources */ = {isa = PBXBuildFile; fileRef = 132D66761B142C2E00EFA836 /* WritePart.m */; };
 		13304D631B136A1000EE2EBB /* MemoryPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13304D621B136A1000EE2EBB /* MemoryPart.m */; };
+		135AFC061B14BEF9007A202F /* PIPE.m in Sources */ = {isa = PBXBuildFile; fileRef = 135AFC051B14BEF9007A202F /* PIPE.m */; };
 		13C3DD3C1B13239D00FB3C3B /* DecodePart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C3DD3B1B13239D00FB3C3B /* DecodePart.m */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		132D66761B142C2E00EFA836 /* WritePart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WritePart.m; sourceTree = "<group>"; };
 		13304D611B136A1000EE2EBB /* MemoryPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryPart.h; sourceTree = "<group>"; };
 		13304D621B136A1000EE2EBB /* MemoryPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MemoryPart.m; sourceTree = "<group>"; };
+		135AFC041B14BEF9007A202F /* PIPE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIPE.h; sourceTree = "<group>"; };
+		135AFC051B14BEF9007A202F /* PIPE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIPE.m; sourceTree = "<group>"; };
 		13C3DD3A1B13239D00FB3C3B /* DecodePart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodePart.h; sourceTree = "<group>"; };
 		13C3DD3B1B13239D00FB3C3B /* DecodePart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodePart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -97,6 +100,8 @@
 				13011EEB1B105D4100ED3BF2 /* AppDelegate.h */,
 				13011EEC1B105D4100ED3BF2 /* AppDelegate.m */,
 				13011EF21B105D4100ED3BF2 /* MainMenu.xib */,
+				135AFC041B14BEF9007A202F /* PIPE.h */,
+				135AFC051B14BEF9007A202F /* PIPE.m */,
 				13011F0C1B107BF000ED3BF2 /* Constants.h */,
 				13011F091B106C9F00ED3BF2 /* FetchPart.h */,
 				13011F0A1B106C9F00ED3BF2 /* FetchPart.m */,
@@ -244,6 +249,7 @@
 				13C3DD3C1B13239D00FB3C3B /* DecodePart.m in Sources */,
 				13304D631B136A1000EE2EBB /* MemoryPart.m in Sources */,
 				13011EED1B105D4100ED3BF2 /* AppDelegate.m in Sources */,
+				135AFC061B14BEF9007A202F /* PIPE.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

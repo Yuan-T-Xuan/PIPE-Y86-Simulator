@@ -9,6 +9,7 @@
 #import "MemoryPart.h"
 
 @implementation MemoryPart
+@synthesize m_stat;
 @synthesize m_valM;
 @synthesize dMemory;
 

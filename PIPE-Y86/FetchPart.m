@@ -11,7 +11,7 @@
 @implementation FetchPart
 @synthesize iMemory;
 
-- (void) InitInstructionMemory: (NSString *) FilePath {
+- (void) InitInstructionMemory: (NSMutableArray*) insList {
 	//to be completed...
 }
 

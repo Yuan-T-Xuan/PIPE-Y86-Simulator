@@ -22,6 +22,8 @@
 	int RF[8];
 	int* RegisterFile;
 }
+@property int d_srcA;
+@property int d_srcB;
 @property int* RegisterFile;
 //have a default constructor for initiating the Register File
 - (id) init;

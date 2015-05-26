@@ -9,6 +9,8 @@
 #import "DecodePart.h"
 
 @implementation DecodePart
+@synthesize d_srcA;
+@synthesize d_srcB;
 @synthesize RegisterFile;
 
 - (id) init {

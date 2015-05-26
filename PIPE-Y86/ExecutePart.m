@@ -9,6 +9,7 @@
 #import "ExecutePart.h"
 
 @implementation ExecutePart
+@synthesize e_Cnd;
 @synthesize e_valE;
 @synthesize e_dstE;
 
