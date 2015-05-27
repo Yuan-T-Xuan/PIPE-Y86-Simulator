@@ -15,6 +15,8 @@
 
 - (id) initWithMemory: (NSMutableDictionary*) Memory {
 	if (self = [super init]) {
+		m_stat = SAOK;
+		m_valM = 0;
 		dMemory = Memory;
 	}
 	return self;

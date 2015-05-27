@@ -11,6 +11,13 @@
 @implementation FetchPart
 @synthesize iMemory;
 
+- (id) init {
+	if (self = [super init]) {
+		iMemory = [NSMutableDictionary new];
+	}
+	return self;
+}
+
 - (void) InitInstructionMemory: (NSMutableArray*) insList {
 	//to be completed...
 }

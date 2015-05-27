@@ -29,24 +29,29 @@
 
 @interface PIPE : NSObject
 {
+	//five main parts
+	FetchPart* FetchUnit;
+	DecodePart* DecodeUnit;
+	ExecutePart* ExecuteUnit;
+	MemoryPart* MemoryUnit;
+	WritePart* WriteUnit;
 	//variables for pipe control logic
 	int F_stall, D_stall, D_bubble, E_bubble, M_bubble, W_stall;
 	//stored instruction list
 	NSMutableArray* insList;	//array of instructions
 	//five pipeline registers
-	int F_predPC, F_prev_predPC;
-	NSMutableDictionary* D_register;//also store _prev_ values
-	NSMutableDictionary* E_register;//also store _prev_ values
-	NSMutableDictionary* M_register;//also store _prev_ values
-	NSMutableDictionary* W_register;//also store _prev_ values
+	int F_predPC;
+	NSMutableDictionary* D_register;
+	NSMutableDictionary* E_register;
+	NSMutableDictionary* M_register;
+	NSMutableDictionary* W_register;
 	//dict for storing breakpoint
 	NSMutableSet* breakpoints;	//storing NSNumber(int)
 	//stop or not
 	int switch_stop;
-	//clock count
-	int clock_count;
-	//log (can be written to txt files)
-	NSString* sys_log;
+	//log
+	//a mutable array which contains several NSMutableDictionary*s
+	NSMutableArray* sys_log;
 }
 @property NSMutableArray* insList;
 @property NSMutableSet* breakpoints;
@@ -56,7 +61,7 @@
 @property (readonly) NSMutableDictionary* E_register;
 @property (readonly) NSMutableDictionary* M_register;
 @property (readonly) NSMutableDictionary* W_register;
-@property (readonly) NSString* sys_log;
+@property (readonly) NSMutableArray* sys_log;
 
 - (id) init;
 - (void) loadImage: (NSString*) ifilePath;
