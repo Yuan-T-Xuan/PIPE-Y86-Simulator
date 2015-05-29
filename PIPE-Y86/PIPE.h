@@ -13,28 +13,7 @@
 #import "ExecutePart.h"
 #import "MemoryPart.h"
 #import "WritePart.h"
-
-@interface instruction : NSObject
-{
-	int addr;
-	NSString* inst;
-}
-@property int addr;
-@property NSString* inst;
-- (id) initAddress: (int) iaddr andInstruction: (NSString*) iinst;
-@end
-
-@implementation instruction
-@synthesize addr;
-@synthesize inst;
-- (id) initAddress: (int) iaddr andInstruction: (NSString*) iinst {
-	if (self = [super init]) {
-		addr = iaddr;
-		inst = iinst;
-	}
-	return self;
-}
-@end
+#import "instruction.h"
 
 @interface PIPE : NSObject
 {

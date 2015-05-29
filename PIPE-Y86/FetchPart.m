@@ -48,7 +48,15 @@ static NSString* little2big(NSString* instr) {
 }
 
 - (void) InitInstructionMemory: (NSMutableArray*) insList {
-	//to be completed...
+	[iMemory removeAllObjects];
+	int instLength = (int)[insList count], i;
+	int addr = 0;
+	NSString* inst = nil;
+	for (i = 0; i < instLength; i++) {
+		addr = ((instruction *)[insList objectAtIndex:i]).addr;
+		inst = ((instruction *)[insList objectAtIndex:i]).inst;
+		[iMemory setObject:[NSNumber numberWithInt:addr] forKey:inst];
+	}
 }
 
 - (void) GetData: (int) iPredPC M_valA: (int) iM_valA

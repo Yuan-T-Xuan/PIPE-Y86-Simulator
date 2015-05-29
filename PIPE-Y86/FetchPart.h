@@ -9,6 +9,7 @@
 #pragma once
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "instruction.h"
 
 @interface FetchPart : NSObject
 {
