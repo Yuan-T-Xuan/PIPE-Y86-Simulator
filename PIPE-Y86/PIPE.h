@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 XuanYuan. All rights reserved.
 //
 
+#pragma once
 #import <Foundation/Foundation.h>
 #import "FetchPart.h"
 #import "DecodePart.h"
@@ -20,11 +21,19 @@
 }
 @property int addr;
 @property NSString* inst;
+- (id) initAddress: (int) iaddr andInstruction: (NSString*) iinst;
 @end
 
 @implementation instruction
 @synthesize addr;
 @synthesize inst;
+- (id) initAddress: (int) iaddr andInstruction: (NSString*) iinst {
+	if (self = [super init]) {
+		addr = iaddr;
+		inst = iinst;
+	}
+	return self;
+}
 @end
 
 @interface PIPE : NSObject

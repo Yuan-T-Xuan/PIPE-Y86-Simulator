@@ -8,6 +8,35 @@
 
 #import "FetchPart.h"
 
+static int str2int(NSString* instr) {
+	int result = 0, length = 0;
+	length = (int)[instr length];
+	int i;
+	for (i = 0; i < length; i++) {
+		if ([instr characterAtIndex:i] >= '0' && [instr characterAtIndex:i] <= '9')
+			result = result * 16 + [instr characterAtIndex:i] - '0';
+		else if ([instr characterAtIndex:i] >= 'A' && [instr characterAtIndex:i] <= 'F')
+			result = result * 16 + [instr characterAtIndex:i] + 10 - 'A';
+		else
+			result = result * 16 + [instr characterAtIndex:i] + 10 - 'a';
+	}
+	return result;
+}
+
+static NSString* little2big(NSString* instr) {
+	char c1, c2, c3, c4, c5, c6, c7, c8;
+	c1 = [instr characterAtIndex:0];
+	c2 = [instr characterAtIndex:1];
+	c3 = [instr characterAtIndex:2];
+	c4 = [instr characterAtIndex:3];
+	c5 = [instr characterAtIndex:4];
+	c6 = [instr characterAtIndex:5];
+	c7 = [instr characterAtIndex:6];
+	c8 = [instr characterAtIndex:7];
+	NSString* result = [NSString stringWithFormat:@"%c%c%c%c%c%c%c%c", c7,c8,c5,c6,c3,c4,c1,c2];
+	return result;
+}
+
 @implementation FetchPart
 @synthesize iMemory;
 
@@ -55,8 +84,8 @@
 		f_ifun = FNONE;
 	}
 	else {
-		f_icode = [[Instruction substringToIndex:1] intValue];
-		f_ifun = [[[Instruction substringFromIndex:1] substringToIndex:1] intValue];
+		f_icode = str2int([Instruction substringToIndex:1]);
+		f_ifun = str2int([[Instruction substringFromIndex:1] substringToIndex:1]);
 	}
 	//set stat
 	if (f_icode == IHALT)
@@ -71,14 +100,14 @@
 	if (f_stat == SAOK) {
 		//set rA and rB
 		if (f_icode == IRRMOVL || f_icode == IRMMOVL || f_icode == IIRMOVL || f_icode == IMRMOVL || f_icode == IOPL || f_icode == IPUSHL || f_icode == IPOPL) {
-			f_rA = [[[Instruction substringFromIndex:2]substringToIndex:1]intValue];
-			f_rB = [[[Instruction substringFromIndex:3]substringToIndex:1]intValue];
+			f_rA = str2int([[Instruction substringFromIndex:2]substringToIndex:1]);
+			f_rB = str2int([[Instruction substringFromIndex:3]substringToIndex:1]);
 		}
 		//set valC
 		if (f_icode == IIRMOVL || f_icode == IRMMOVL || f_icode == IMRMOVL)
-			f_valC = [[Instruction substringFromIndex:4] intValue];
+			f_valC = str2int(little2big([Instruction substringFromIndex:4]));
 		if (f_icode == IJXX || f_icode == ICALL)
-			f_valC = [[Instruction substringFromIndex:2] intValue];
+			f_valC = str2int(little2big([Instruction substringFromIndex:2]));
 		//set valP
 		if (f_icode == IHALT || f_icode == INOP || f_icode == IRET)
 			f_valP = f_pc + 1;

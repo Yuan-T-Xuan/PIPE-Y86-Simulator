@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 XuanYuan. All rights reserved.
 //
 
+#pragma once
 #import <Foundation/Foundation.h>
 #import "Constants.h"
  

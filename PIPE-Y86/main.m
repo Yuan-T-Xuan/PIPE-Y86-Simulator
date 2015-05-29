@@ -11,13 +11,15 @@
 int main(int argc, const char * argv[]) {
 	//return NSApplicationMain(argc, argv);
 	//
-	NSMutableDictionary *dict;
+	/*NSMutableDictionary *dict;
 	dict = [NSMutableDictionary dictionaryWithCapacity:100];
 	[dict setObject:@"A String" forKey:[NSNumber numberWithInt:1]];
 	NSString *str;
 	str = [dict objectForKey:[NSNumber numberWithInt:1]];
 	NSNumber* anum = [NSNumber numberWithInt:1];
 	int hehe = [anum intValue];
-	printf("%d\n", hehe);
+	printf("%d\n", hehe);*/
+	NSString* test = @"lalala";
+	printf("%d\n", (int)[test length]);
 	return 0;
 }

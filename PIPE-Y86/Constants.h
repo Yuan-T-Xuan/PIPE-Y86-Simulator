@@ -6,6 +6,7 @@
 //  Copyright (c) 2015年 XuanYuan. All rights reserved.
 //
 
+#pragma once
 #ifndef PIPE_Y86_Constants_h
 #define PIPE_Y86_Constants_h
 
