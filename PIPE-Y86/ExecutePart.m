@@ -12,6 +12,8 @@
 @synthesize e_Cnd;
 @synthesize e_valE;
 @synthesize e_dstE;
+@synthesize CC_ZF;
+@synthesize CC_SF;
 
 - (id) init {
 	if (self = [super init]) {

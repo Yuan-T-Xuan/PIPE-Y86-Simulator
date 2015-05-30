@@ -21,8 +21,11 @@
 	int f_valC, f_valP;
 	//the inst memory
 	NSMutableDictionary *iMemory;	//key: NSNumBer(int) value: NSString
+	//for breakpoints' work
+	int f_pc;
 }
 @property NSMutableDictionary* iMemory;
+@property (readonly) int f_pc;
 - (id) init;
 - (void) InitInstructionMemory: (NSMutableArray*) insList;
 - (void) GetData: (int) iPredPC M_valA: (int) iM_valA

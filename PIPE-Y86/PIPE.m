@@ -81,7 +81,8 @@ static int str2int(NSString* instr) {
 		[E_register setObject:[NSNumber numberWithInt:RNONE] forKey:@"dstM"];
 		[E_register setObject:[NSNumber numberWithInt:REAX] forKey:@"srcA"];
 		[E_register setObject:[NSNumber numberWithInt:REAX] forKey:@"srcB"];
-		
+		//set switch_stop to 0
+		switch_stop = 0;
 		//insList, breakpoints and sys_log always get renewed when loading images
 	}
 	return self;
@@ -166,31 +167,130 @@ static int str2int(NSString* instr) {
 	[currValues setObject:[D_register objectForKey:@"rB"] forKey:@"D_rB"];
 	[currValues setObject:[D_register objectForKey:@"valC"] forKey:@"D_valC"];
 	[currValues setObject:[D_register objectForKey:@"valP"] forKey:@"D_valP"];
-	//to be continued ...
+	[currValues setObject:[E_register objectForKey:@"stat"] forKey:@"E_stat"];
+	[currValues setObject:[E_register objectForKey:@"icode"] forKey:@"E_icode"];
+	[currValues setObject:[E_register objectForKey:@"ifun"] forKey:@"E_ifun"];
+	[currValues setObject:[E_register objectForKey:@"valC"] forKey:@"E_valC"];
+	[currValues setObject:[E_register objectForKey:@"valA"] forKey:@"E_valA"];
+	[currValues setObject:[E_register objectForKey:@"valB"] forKey:@"E_valB"];
+	[currValues setObject:[E_register objectForKey:@"dstE"] forKey:@"E_dstE"];
+	[currValues setObject:[E_register objectForKey:@"dstM"] forKey:@"E_dstM"];
+	[currValues setObject:[E_register objectForKey:@"srcA"] forKey:@"E_srcA"];
+	[currValues setObject:[E_register objectForKey:@"srcB"] forKey:@"E_srcB"];
+	[currValues setObject:[M_register objectForKey:@"stat"] forKey:@"M_stat"];
+	[currValues setObject:[M_register objectForKey:@"icode"] forKey:@"M_icode"];
+	[currValues setObject:[M_register objectForKey:@"Cnd"] forKey:@"M_Cnd"];
+	[currValues setObject:[M_register objectForKey:@"valE"] forKey:@"M_valE"];
+	[currValues setObject:[M_register objectForKey:@"valA"] forKey:@"M_valA"];
+	[currValues setObject:[M_register objectForKey:@"dstE"] forKey:@"M_dstE"];
+	[currValues setObject:[M_register objectForKey:@"dstM"] forKey:@"M_dstM"];
+	[currValues setObject:[W_register objectForKey:@"stat"] forKey:@"W_stat"];
+	[currValues setObject:[W_register objectForKey:@"icode"] forKey:@"W_icode"];
+	[currValues setObject:[W_register objectForKey:@"valE"] forKey:@"W_valE"];
+	[currValues setObject:[W_register objectForKey:@"valM"] forKey:@"W_valM"];
+	[currValues setObject:[W_register objectForKey:@"dstE"] forKey:@"W_dstE"];
+	[currValues setObject:[W_register objectForKey:@"dstM"] forKey:@"W_dstM"];
+	//do not forget the CC
+	[currValues setObject:[NSNumber numberWithInt:ExecuteUnit.CC_ZF] forKey:@"CC_ZF"];
+	[currValues setObject:[NSNumber numberWithInt:ExecuteUnit.CC_SF] forKey:@"CC_SF"];
+	//save it in the log array
+	[sys_log addObject:currValues];
 }
 
 - (void) singleStepBackward {
-	
+	//if it is the first step (or no step), cannot go backward
+	if ([sys_log count] <= 1)
+		return;
+	NSMutableDictionary* lastStep = [sys_log lastObject];
+	//F_register
+	F_predPC = [[lastStep objectForKey:@"F_predPC"] intValue];
+	//D_register
+	[D_register setObject:[lastStep objectForKey:@"D_stat"] forKey:@"stat"];
+	[D_register setObject:[lastStep objectForKey:@"D_icode"] forKey:@"icode"];
+	[D_register setObject:[lastStep objectForKey:@"D_ifun"] forKey:@"ifun"];
+	[D_register setObject:[lastStep objectForKey:@"D_rA"] forKey:@"rA"];
+	[D_register setObject:[lastStep objectForKey:@"D_rB"] forKey:@"rB"];
+	[D_register setObject:[lastStep objectForKey:@"D_valC"] forKey:@"valC"];
+	[D_register setObject:[lastStep objectForKey:@"D_valP"] forKey:@"valP"];
+	//E_register
+	[E_register setObject:[lastStep objectForKey:@"E_stat"] forKey:@"stat"];
+	[E_register setObject:[lastStep objectForKey:@"E_icode"] forKey:@"icode"];
+	[E_register setObject:[lastStep objectForKey:@"E_ifun"] forKey:@"ifun"];
+	[E_register setObject:[lastStep objectForKey:@"E_valC"] forKey:@"valC"];
+	[E_register setObject:[lastStep objectForKey:@"E_valA"] forKey:@"valA"];
+	[E_register setObject:[lastStep objectForKey:@"E_valB"] forKey:@"valB"];
+	[E_register setObject:[lastStep objectForKey:@"E_dstE"] forKey:@"dstE"];
+	[E_register setObject:[lastStep objectForKey:@"E_dstM"] forKey:@"dstM"];
+	[E_register setObject:[lastStep objectForKey:@"E_srcA"] forKey:@"srcA"];
+	[E_register setObject:[lastStep objectForKey:@"E_srcB"] forKey:@"srcB"];
+	//M_register
+	[M_register setObject:[lastStep objectForKey:@"M_stat"] forKey:@"stat"];
+	[M_register setObject:[lastStep objectForKey:@"M_icode"] forKey:@"icode"];
+	[M_register setObject:[lastStep objectForKey:@"M_Cnd"] forKey:@"Cnd"];
+	[M_register setObject:[lastStep objectForKey:@"M_valE"] forKey:@"valE"];
+	[M_register setObject:[lastStep objectForKey:@"M_valA"] forKey:@"valA"];
+	[M_register setObject:[lastStep objectForKey:@"M_dstE"] forKey:@"dstE"];
+	[M_register setObject:[lastStep objectForKey:@"M_dstM"] forKey:@"dstM"];
+	//W_register
+	[W_register setObject:[lastStep objectForKey:@"W_stat"] forKey:@"stat"];
+	[W_register setObject:[lastStep objectForKey:@"W_icode"] forKey:@"icode"];
+	[W_register setObject:[lastStep objectForKey:@"W_valE"] forKey:@"valE"];
+	[W_register setObject:[lastStep objectForKey:@"W_valM"] forKey:@"valM"];
+	[W_register setObject:[lastStep objectForKey:@"W_dstE"] forKey:@"dstE"];
+	[W_register setObject:[lastStep objectForKey:@"W_dstM"] forKey:@"dstM"];
+	//CC
+	ExecuteUnit.CC_ZF = [[lastStep objectForKey:@"CC_ZF"] intValue];
+	ExecuteUnit.CC_SF = [[lastStep objectForKey:@"CC_SF"] intValue];
+	//remove the last step
+	[sys_log removeLastObject];
 }
 
 - (void) setBreakpointAt: (int) iaddress {
-	
+	[breakpoints addObject: [NSNumber numberWithInt: iaddress]];
 }
 
 - (void) removeBreakpointFrom: (int) iaddress {
-	
+	[breakpoints removeObject: [NSNumber numberWithInt: iaddress]];
 }
 
 - (void) runSlowly {
-	
+	while ([[W_register objectForKey:@"stat"] intValue] == SAOK) {
+		//if switch_stop is true
+		if (switch_stop != 0) {
+			switch_stop = 0;
+			return;
+		}
+		//if there's a breakpoint
+		if ([breakpoints containsObject: [NSNumber numberWithInt:FetchUnit.f_pc]]) {
+			NSLog(@"A breakpoint detected.");
+			return;
+		}
+		//else, run normally
+		[self singleStepForward];
+		//... and wait
+		sleep(1);
+	}
 }
 
 - (void) run {
-	
+	while ([[W_register objectForKey:@"stat"] intValue] == SAOK) {
+		//if switch_stop is true
+		if (switch_stop != 0) {
+			switch_stop = 0;
+			return;
+		}
+		//if there's a breakpoint
+		if ([breakpoints containsObject: [NSNumber numberWithInt:FetchUnit.f_pc]]) {
+			NSLog(@"A breakpoint detected.");
+			return;
+		}
+		//else, run normally
+		[self singleStepForward];
+	}
 }
 
 - (void) Pause {
-	
+	switch_stop = 1;
 }
 @end
 

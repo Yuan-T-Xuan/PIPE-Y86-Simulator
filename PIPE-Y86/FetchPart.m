@@ -39,6 +39,7 @@ static NSString* little2big(NSString* instr) {
 
 @implementation FetchPart
 @synthesize iMemory;
+@synthesize f_pc;
 
 - (id) init {
 	if (self = [super init]) {
@@ -71,7 +72,6 @@ static NSString* little2big(NSString* instr) {
 }
 
 - (void) Calculate {
-	int f_pc;
 	if(M_icode == IJXX && !M_Cnd)
 		f_pc = M_valA;
 	else if(W_icode == IRET)
