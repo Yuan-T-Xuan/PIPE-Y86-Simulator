@@ -52,7 +52,7 @@
 @property (readonly) NSMutableArray* sys_log;
 
 - (id) init;
-- (void) loadImage: (NSString*) ifilePath;
+- (void) loadImage: (char*) ifilePath;
 - (void) singleStepForward;
 - (void) singleStepBackward;
 - (void) setBreakpointAt: (int) iaddress;

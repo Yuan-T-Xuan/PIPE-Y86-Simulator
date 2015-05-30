@@ -88,14 +88,18 @@ static int str2int(NSString* instr) {
 	return self;
 }
 
-- (void) loadImage: (NSString*) ifilePath {
+- (void) loadImage: (char*) ifilePath {
 	//prepare insList, breakpoints and sys_log
 	insList = [NSMutableArray new];
 	breakpoints = [NSMutableSet new];
 	sys_log = [NSMutableArray new];
 	//read file
 	FILE* fp;
-	fp = fopen([ifilePath cStringUsingEncoding: NSASCIIStringEncoding], "r");
+	fp = fopen(ifilePath, "r");
+	if (fp == NULL) {
+		NSLog(@"No image has been read.");
+		return;
+	}
 	char tmp[100];
 	int i, address;
 	NSMutableString *inst = nil, *tmp_address;
