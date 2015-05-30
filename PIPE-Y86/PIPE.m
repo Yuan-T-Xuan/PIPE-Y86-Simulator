@@ -103,12 +103,24 @@ static int str2int(NSString* instr) {
 	char tmp[100];
 	int i, address;
 	NSMutableString *inst = nil, *tmp_address;
+	//for debug
+	int counter = 0;
+	//
 	while (fgets(tmp, 100, fp) != NULL) {
-		for (i = 0; i < strlen(tmp); i++)
-			if (tmp[i] == '|')
+		//for debug
+		counter++;
+		printf("%3d %s", counter, tmp);
+		//
+		for (i = 0; i < strlen(tmp); i++) {
+			if (tmp[i] == '|') {
+				//for debug
+				//printf("'|' Found\n");
+				//
 				goto END_LOOP;
+			}
 			if (tmp[i] == '0')
 				break;
+		}
 		if (tmp[++i] != 'x')
 			continue;
 		tmp_address = [NSMutableString new];
@@ -121,11 +133,12 @@ static int str2int(NSString* instr) {
 		address = str2int(tmp_address);
 		if (tmp[i] != ':')
 			continue;
-		for (i = i + 1; i < strlen(tmp); i++)
+		for (i = i + 1; i < strlen(tmp); i++) {
 			if (tmp[i] == '|')
 				goto END_LOOP;
 			if ((tmp[i]>='0'&&tmp[i]<='9') || (tmp[i]>='A'&&tmp[i]<='F') || (tmp[i]>='a'&&tmp[i]<='f'))
 				break;
+		}
 		if (i == strlen(tmp))
 			continue;
 		inst = [NSMutableString new];
@@ -136,6 +149,9 @@ static int str2int(NSString* instr) {
 				break;
 		}
 		[insList addObject: [[instruction alloc] initAddress:address andInstruction:inst]];
+		//for debug
+		printf("One Added\n");
+		//
 		END_LOOP:
 		i = i;	//no use ...
 	}
@@ -154,10 +170,44 @@ static int str2int(NSString* instr) {
 	[FetchUnit Calculate];
 	[WriteUnit GetData:W_register];
 	
-	[FetchUnit WriteData:D_register];
-	[DecodeUnit WriteData:E_register];
-	[ExecuteUnit WriteData:M_register];
-	[MemoryUnit WriteData:W_register];
+	//pipeline control logic
+	//For F
+	int F_stall_1 = ([[E_register objectForKey:@"icode"] intValue]==IMRMOVL) || ([[E_register objectForKey:@"icode"] intValue]==IPOPL);
+	int F_stall_2 = ([[E_register objectForKey:@"dstM"] intValue]==DecodeUnit.d_srcA) || ([[E_register objectForKey:@"dstM"] intValue]==DecodeUnit.d_srcB);
+	int F_stall_3 = ([[D_register objectForKey:@"icode"] intValue]==IRET) || ([[E_register objectForKey:@"icode"] intValue]==IRET) || ([[M_register objectForKey:@"icode"] intValue]==IRET);
+	F_stall = (F_stall_1 && F_stall_2) || F_stall_3;
+	//For D
+	D_stall = F_stall_1 && F_stall_2;
+	int D_bubble_1 = ([[E_register objectForKey:@"icode"] intValue] == IJXX) && !ExecuteUnit.e_Cnd;
+	int D_bubble_2 = !D_stall;
+	D_bubble = D_bubble_1 || (D_bubble_2 && F_stall_3);
+	//For E
+	E_bubble = D_bubble_1 || D_stall;
+	//For M & W
+	W_stall = ([[W_register objectForKey:@"stat"] intValue] != SAOK);
+	M_bubble = (MemoryUnit.m_stat != SAOK) || W_stall;
+	//use control logic values
+	if (!F_stall)
+		[FetchUnit WritePredPC: &F_predPC];
+	if (D_bubble) {
+		[D_register setObject:[NSNumber numberWithInt:SAOK] forKey:@"stat"];
+		[D_register setObject:[NSNumber numberWithInt:INOP] forKey:@"icode"];
+		[D_register setObject:[NSNumber numberWithInt:CA] forKey:@"ifun"];
+	} else if (!D_stall)
+		[FetchUnit WriteData:D_register];
+	if (E_bubble) {
+		[E_register setObject:[NSNumber numberWithInt:SAOK] forKey:@"stat"];
+		[E_register setObject:[NSNumber numberWithInt:INOP] forKey:@"icode"];
+		[E_register setObject:[NSNumber numberWithInt:CA] forKey:@"ifun"];
+	} else
+		[DecodeUnit WriteData:E_register];
+	if (M_bubble) {
+		[M_register setObject:[NSNumber numberWithInt:SAOK] forKey:@"stat"];
+		[M_register setObject:[NSNumber numberWithInt:INOP] forKey:@"icode"];
+	} else
+		[ExecuteUnit WriteData:M_register];
+	if (!W_stall)
+		[MemoryUnit WriteData:W_register];
 	[WriteUnit WriteData:DecodeUnit.RegisterFile];
 	
 	//write system log
@@ -290,6 +340,9 @@ static int str2int(NSString* instr) {
 		}
 		//else, run normally
 		[self singleStepForward];
+		//for debug
+		//printf("One Step\n");
+		//
 	}
 }
 

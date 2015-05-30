@@ -61,8 +61,10 @@
 	@catch (NSException *exception) {
 		dmem_error = 1;
 	}
-	if (dmem_error)
+	if (dmem_error) {
+		printf("Memory Error\n");
 		m_stat = SADR;
+	}
 }
 
 - (void) WriteData: (NSMutableDictionary *) W_Register {

@@ -56,7 +56,7 @@ static NSString* little2big(NSString* instr) {
 	for (i = 0; i < instLength; i++) {
 		addr = ((instruction *)[insList objectAtIndex:i]).addr;
 		inst = ((instruction *)[insList objectAtIndex:i]).inst;
-		[iMemory setObject:[NSNumber numberWithInt:addr] forKey:inst];
+		[iMemory setObject:inst forKey:[NSNumber numberWithInt:addr]];
 	}
 }
 
@@ -69,6 +69,9 @@ static NSString* little2big(NSString* instr) {
 	M_Cnd = iM_Cnd;
 	M_icode = iM_icode;
 	W_icode = iW_icode;
+	//for debug
+	printf("Fetch: %4d %4d %4d %4d %4d %4d\n", PredPC, M_valA, W_valM, M_Cnd, M_icode, W_icode);
+	//
 }
 
 - (void) Calculate {
@@ -78,14 +81,27 @@ static NSString* little2big(NSString* instr) {
 		f_pc = W_valM;
 	else
 		f_pc = PredPC;
+	//for debug
+	printf("value of f_pc(1): %d\n", f_pc);
+	//
 	NSString* Instruction;
 	int imem_error = 0;
 	@try {
-		Instruction = [iMemory objectForKey:[NSNumber numberWithInt:f_pc]];
+		//for debug
+		printf("%d\n", f_pc);
+		//
+		Instruction = (NSString *)[iMemory objectForKey:[NSNumber numberWithInt:f_pc]];
+		//for debug
+		NSLog(@"%@", Instruction);
+		//
 	}
 	@catch (NSException *exception) {
 		imem_error = 1;
 	}
+	//for debug
+	printf("???\n");
+	NSLog(@"%@", Instruction);
+	//
 	//set icode and ifun
 	if (imem_error) {
 		f_icode = INOP;
@@ -125,6 +141,14 @@ static NSString* little2big(NSString* instr) {
 			f_valP = f_pc + 5;
 		else
 			f_valP = f_pc + 6;
+		//set f_predPC
+		//for debug
+		printf("f_pc: %d\n", f_pc);
+		//
+		if (f_icode == IJXX || f_icode == ICALL)
+			f_predPC = f_valC;
+		else
+			f_predPC = f_valP;
 	}
 	else { f_icode = INOP; f_ifun = FNONE; }
 }
@@ -137,6 +161,10 @@ static NSString* little2big(NSString* instr) {
 	[D_Register setObject:[NSNumber numberWithInt:f_rB] forKey:@"rB"];
 	[D_Register setObject:[NSNumber numberWithInt:f_valC] forKey:@"valC"];
 	[D_Register setObject:[NSNumber numberWithInt:f_valP] forKey:@"valP"];
+}
+
+- (void) WritePredPC: (int *) F_predPC {
+	*F_predPC = f_predPC;
 }
 @end
 

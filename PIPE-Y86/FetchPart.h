@@ -18,7 +18,7 @@
 	int M_icode, W_icode;
 	//for output
 	int f_stat, f_icode, f_ifun, f_rA, f_rB;
-	int f_valC, f_valP;
+	int f_valC, f_valP, f_predPC;
 	//the inst memory
 	NSMutableDictionary *iMemory;	//key: NSNumBer(int) value: NSString
 	//for breakpoints' work
@@ -33,4 +33,5 @@
 	 W_icode: (int) iW_icode;
 - (void) Calculate;
 - (void) WriteData: (NSMutableDictionary *) D_Register;
+- (void) WritePredPC: (int *) F_predPC;
 @end
