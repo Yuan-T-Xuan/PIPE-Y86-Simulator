@@ -150,7 +150,14 @@ static NSString* little2big(NSString* instr) {
 		else
 			f_predPC = f_valP;
 	}
-	else { f_icode = INOP; f_ifun = FNONE; }
+	else {
+		f_icode = INOP;
+		f_ifun = FNONE;
+		//for debug
+		printf("f_pc: %d\n", f_pc);
+		//
+		f_predPC = f_pc;
+	}
 }
 
 - (void) WriteData: (NSMutableDictionary *) D_Register {
