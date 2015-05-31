@@ -18,6 +18,7 @@
 		13304D631B136A1000EE2EBB /* MemoryPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13304D621B136A1000EE2EBB /* MemoryPart.m */; };
 		134EC9BA1B185B01009C21BC /* instruction.m in Sources */ = {isa = PBXBuildFile; fileRef = 134EC9B91B185B01009C21BC /* instruction.m */; };
 		135AFC061B14BEF9007A202F /* PIPE.m in Sources */ = {isa = PBXBuildFile; fileRef = 135AFC051B14BEF9007A202F /* PIPE.m */; };
+		1397D7811B1AD16B005D57D4 /* PIPE.png in Resources */ = {isa = PBXBuildFile; fileRef = 1397D7801B1AD16B005D57D4 /* PIPE.png */; };
 		13C3DD3C1B13239D00FB3C3B /* DecodePart.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C3DD3B1B13239D00FB3C3B /* DecodePart.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		134EC9B91B185B01009C21BC /* instruction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = instruction.m; sourceTree = "<group>"; };
 		135AFC041B14BEF9007A202F /* PIPE.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIPE.h; sourceTree = "<group>"; };
 		135AFC051B14BEF9007A202F /* PIPE.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIPE.m; sourceTree = "<group>"; };
+		1397D7801B1AD16B005D57D4 /* PIPE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PIPE.png; sourceTree = "<group>"; };
 		13C3DD3A1B13239D00FB3C3B /* DecodePart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DecodePart.h; sourceTree = "<group>"; };
 		13C3DD3B1B13239D00FB3C3B /* DecodePart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DecodePart.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 		13011EE81B105D4100ED3BF2 /* PIPE-Y86 */ = {
 			isa = PBXGroup;
 			children = (
+				1397D7801B1AD16B005D57D4 /* PIPE.png */,
 				13011EF01B105D4100ED3BF2 /* Images.xcassets */,
 				13011EE91B105D4100ED3BF2 /* Supporting Files */,
 				13011EEB1B105D4100ED3BF2 /* AppDelegate.h */,
@@ -228,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1397D7811B1AD16B005D57D4 /* PIPE.png in Resources */,
 				13011EF11B105D4100ED3BF2 /* Images.xcassets in Resources */,
 				13011EF41B105D4100ED3BF2 /* MainMenu.xib in Resources */,
 			);
