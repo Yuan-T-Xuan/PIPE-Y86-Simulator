@@ -51,6 +51,19 @@
 @property (readonly) NSMutableDictionary* W_register;
 @property (readonly) NSMutableArray* sys_log;
 
+@property (readonly) FetchPart* FetchUnit;
+@property (readonly) DecodePart* DecodeUnit;
+@property (readonly) ExecutePart* ExecuteUnit;
+@property (readonly) MemoryPart* MemoryUnit;
+@property (readonly) WritePart* WriteUnit;
+
+@property (readonly) int F_stall;
+@property (readonly) int D_stall;
+@property (readonly) int D_bubble;
+@property (readonly) int E_bubble;
+@property (readonly) int M_bubble;
+@property (readonly) int W_stall;
+
 - (id) init;
 - (void) loadImage: (char*) ifilePath;
 - (void) singleStepForward;

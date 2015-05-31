@@ -34,6 +34,19 @@ static int str2int(NSString* instr) {
 @synthesize W_register;
 @synthesize sys_log;
 
+@synthesize FetchUnit;
+@synthesize DecodeUnit;
+@synthesize ExecuteUnit;
+@synthesize MemoryUnit;
+@synthesize WriteUnit;
+
+@synthesize F_stall;
+@synthesize D_stall;
+@synthesize D_bubble;
+@synthesize E_bubble;
+@synthesize M_bubble;
+@synthesize W_stall;
+
 - (id) init {
 	if (self = [super init]) {
 		//instantiate five parts & registers

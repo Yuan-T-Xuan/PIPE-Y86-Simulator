@@ -13,6 +13,63 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
             <connections>
+                <outlet property="GUI_ClockCycle" destination="Tnd-OG-Ifm" id="dUV-pD-Xkr"/>
+                <outlet property="GUI_D_bubble" destination="FUi-rR-NtK" id="66t-6J-6KT"/>
+                <outlet property="GUI_D_icode" destination="Huj-3M-0JQ" id="zqB-TV-COW"/>
+                <outlet property="GUI_D_ifun" destination="PpC-CS-lJo" id="SZp-aM-Y1b"/>
+                <outlet property="GUI_D_rA" destination="iei-RQ-Lbi" id="ft8-d4-jO8"/>
+                <outlet property="GUI_D_rB" destination="lK6-nw-37J" id="APz-ds-Ihn"/>
+                <outlet property="GUI_D_stall" destination="TXv-jv-0mu" id="LEy-Jm-uVG"/>
+                <outlet property="GUI_D_stat" destination="z7o-xT-zm4" id="Huj-Tu-p1v"/>
+                <outlet property="GUI_D_valC" destination="297-7u-RvM" id="XDx-0R-ItY"/>
+                <outlet property="GUI_D_valP" destination="OIT-Ut-ufX" id="lab-rL-nLZ"/>
+                <outlet property="GUI_E_bubble" destination="Z4l-tN-1Gv" id="wxh-xc-lCG"/>
+                <outlet property="GUI_E_dstE" destination="j64-Ut-eEa" id="jin-wY-xke"/>
+                <outlet property="GUI_E_dstM" destination="PsL-oC-GHu" id="X6O-ic-HVs"/>
+                <outlet property="GUI_E_icode" destination="P1Y-kv-GLj" id="dl9-A9-4MH"/>
+                <outlet property="GUI_E_ifun" destination="FQZ-Ki-F0w" id="djm-mS-JdP"/>
+                <outlet property="GUI_E_srcA" destination="Djj-C9-FxS" id="fcE-Hi-ddB"/>
+                <outlet property="GUI_E_srcB" destination="ig8-FY-d16" id="8FY-n7-OXE"/>
+                <outlet property="GUI_E_stall" destination="Rie-09-PH1" id="VX4-zK-W3T"/>
+                <outlet property="GUI_E_stat" destination="0MF-Ld-6JY" id="dT9-gM-yjq"/>
+                <outlet property="GUI_E_valA" destination="XFT-hv-gjs" id="SDh-Fv-EKK"/>
+                <outlet property="GUI_E_valB" destination="L0E-XY-1xC" id="CJk-Rx-9Cw"/>
+                <outlet property="GUI_E_valC" destination="qx4-ZB-j5E" id="937-yZ-tgO"/>
+                <outlet property="GUI_F_bubble" destination="cmp-l8-opz" id="cBv-CU-QUa"/>
+                <outlet property="GUI_F_predPC" destination="oxE-Rv-7RQ" id="EAq-Ww-Z0d"/>
+                <outlet property="GUI_F_stall" destination="bEk-qs-y21" id="NyR-uh-kxz"/>
+                <outlet property="GUI_FetchedInst" destination="UlX-9c-FhH" id="4AY-3P-GFe"/>
+                <outlet property="GUI_M_Cnd" destination="CW4-Ff-ncj" id="pr6-k2-AmJ"/>
+                <outlet property="GUI_M_bubble" destination="0JC-xi-BbK" id="dhV-Mg-pkV"/>
+                <outlet property="GUI_M_dstE" destination="j3W-pE-ud9" id="dV8-CE-3dr"/>
+                <outlet property="GUI_M_dstM" destination="0LB-nN-YbX" id="jGK-l9-Ldn"/>
+                <outlet property="GUI_M_icode" destination="jHT-18-ket" id="cxp-K0-Mag"/>
+                <outlet property="GUI_M_stall" destination="9X4-tW-6PX" id="pRz-W4-Kc5"/>
+                <outlet property="GUI_M_stat" destination="sYS-vs-7E9" id="VHO-yW-U3Z"/>
+                <outlet property="GUI_M_valA" destination="JD1-xb-Edi" id="vlw-e9-ZRg"/>
+                <outlet property="GUI_M_valE" destination="q3k-R5-cHb" id="cfK-N2-2fE"/>
+                <outlet property="GUI_SF" destination="EtH-t3-RcN" id="PM3-Fk-QKd"/>
+                <outlet property="GUI_W_dstE" destination="DZw-6r-NHz" id="Jrd-4j-N5n"/>
+                <outlet property="GUI_W_dstM" destination="cS2-NA-ZRO" id="wCT-MC-w9O"/>
+                <outlet property="GUI_W_icode" destination="ieP-lP-EV1" id="NM5-LO-2Q0"/>
+                <outlet property="GUI_W_stat" destination="V9V-Ys-age" id="xWZ-0W-fRt"/>
+                <outlet property="GUI_W_valE" destination="o4G-Uh-8LH" id="pix-Bn-52v"/>
+                <outlet property="GUI_W_valM" destination="6dX-qj-nCM" id="z5L-6V-wD6"/>
+                <outlet property="GUI_ZF" destination="v5d-Su-zCi" id="ew1-qa-Nfs"/>
+                <outlet property="GUI_address" destination="Km1-yt-Cjb" id="kGf-gH-c0d"/>
+                <outlet property="GUI_breakpoint" destination="cM4-PP-e6n" id="gg6-b9-irV"/>
+                <outlet property="GUI_data" destination="P43-ak-WIF" id="4du-3D-67G"/>
+                <outlet property="GUI_eax" destination="sAt-62-JpK" id="Q4A-4Q-tvc"/>
+                <outlet property="GUI_ebp" destination="MvJ-oE-WPk" id="S9y-VA-TB8"/>
+                <outlet property="GUI_ebx" destination="Nal-83-Y20" id="TZg-mC-HRZ"/>
+                <outlet property="GUI_ecx" destination="nWi-tV-srX" id="LQj-fi-sSn"/>
+                <outlet property="GUI_edi" destination="jAW-dU-TLi" id="pDW-fb-vEc"/>
+                <outlet property="GUI_edx" destination="gOA-pT-Gfx" id="d5E-df-NfT"/>
+                <outlet property="GUI_esi" destination="iWB-P8-bDs" id="BgQ-xk-Zmg"/>
+                <outlet property="GUI_esp" destination="fiV-m0-ZEo" id="G11-cA-d50"/>
+                <outlet property="pushObserve" destination="e3F-0t-k4a" id="4ZW-WH-WCV"/>
+                <outlet property="pushRemove" destination="Oa0-yV-O7h" id="vdB-Yo-CoX"/>
+                <outlet property="pushSet" destination="8kP-Yh-zBk" id="dca-zX-S2y"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -681,6 +738,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushReset:" target="Voe-Tx-rLC" id="Z5q-eP-25y"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uAx-5f-yHm">
                         <rect key="frame" x="1111" y="639" width="79" height="32"/>
@@ -688,6 +748,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushPause:" target="Voe-Tx-rLC" id="mwc-NA-XVS"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Fp-kU-Vu5">
                         <rect key="frame" x="1030" y="639" width="81" height="32"/>
@@ -695,6 +758,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushSlowly:" target="Voe-Tx-rLC" id="GAf-mf-YUn"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RUS-fR-LZ6">
                         <rect key="frame" x="928" y="639" width="102" height="32"/>
@@ -702,6 +768,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushFullSpeed:" target="Voe-Tx-rLC" id="i7f-iM-s3u"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JYW-d7-wAM">
                         <rect key="frame" x="856" y="639" width="72" height="32"/>
@@ -709,6 +778,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushBack:" target="Voe-Tx-rLC" id="yci-E7-Olw"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYD-Dk-Y5Y">
                         <rect key="frame" x="787" y="639" width="69" height="32"/>
@@ -716,6 +788,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushStep:" target="Voe-Tx-rLC" id="d8g-u6-HRi"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3p3-zO-n3x">
                         <rect key="frame" x="716" y="639" width="71" height="32"/>
@@ -723,6 +798,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushLoad:" target="Voe-Tx-rLC" id="s3L-ph-Wz5"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lhp-87-g6C">
                         <rect key="frame" x="720" y="621" width="71" height="17"/>
@@ -733,21 +811,37 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oa0-yV-O7h">
-                        <rect key="frame" x="1175" y="611" width="91" height="32"/>
+                        <rect key="frame" x="1020" y="611" width="91" height="32"/>
                         <buttonCell key="cell" type="push" title="Remove" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="f7c-iz-7dB">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushRemove:" target="Voe-Tx-rLC" id="qvX-Ds-Lo3"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yl0-Rh-yxg">
+                        <rect key="frame" x="1111" y="611" width="155" height="32"/>
+                        <buttonCell key="cell" type="push" title="View System Log" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lTo-vu-hJT">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="pushSysLog:" target="Voe-Tx-rLC" id="sLa-S8-441"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8kP-Yh-zBk">
-                        <rect key="frame" x="1111" y="611" width="61" height="32"/>
+                        <rect key="frame" x="928" y="611" width="92" height="32"/>
                         <buttonCell key="cell" type="push" title="Set" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OvX-df-kPc">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="pushSet:" target="Voe-Tx-rLC" id="hPh-VF-Aey"/>
+                        </connections>
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cM4-PP-e6n">
-                        <rect key="frame" x="797" y="617" width="308" height="22"/>
+                        <rect key="frame" x="797" y="617" width="125" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="9cg-ig-teJ">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1334,7 +1428,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Km1-yt-Cjb">
-                        <rect key="frame" x="902" y="50" width="358" height="22"/>
+                        <rect key="frame" x="902" y="50" width="270" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="H2L-kw-amS">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1493,6 +1587,16 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e3F-0t-k4a">
+                        <rect key="frame" x="1174" y="43" width="92" height="32"/>
+                        <buttonCell key="cell" type="push" title="Observe" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="14x-Es-kgS">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="pushObserve:" target="Voe-Tx-rLC" id="PDA-sm-YrY"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="613" y="322.5"/>
