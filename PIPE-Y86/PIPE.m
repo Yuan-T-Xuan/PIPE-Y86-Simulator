@@ -172,8 +172,11 @@ static int str2int(NSString* instr) {
 }
 
 - (void) singleStepForward {
+	//create a dictionary to store values of curr. step
+	NSMutableDictionary* currValues = [NSMutableDictionary new];
+	
 	[MemoryUnit GetData:M_register];
-	[MemoryUnit Calculate];
+	int type = [MemoryUnit Calculate];
 	[ExecuteUnit GetData:E_register W_stat:[[W_register objectForKey:@"stat"] intValue] m_stat:MemoryUnit.m_stat];
 	[ExecuteUnit Calculate];
 	
@@ -224,8 +227,6 @@ static int str2int(NSString* instr) {
 	[WriteUnit WriteData:DecodeUnit.RegisterFile];
 	
 	//write system log
-	//create a dictionary to store curr values
-	NSMutableDictionary* currValues = [NSMutableDictionary new];
 	[currValues setObject:[NSNumber numberWithInt:F_predPC] forKey:@"F_predPC"];
 	[currValues setObject:[D_register objectForKey:@"stat"] forKey:@"D_stat"];
 	[currValues setObject:[D_register objectForKey:@"icode"] forKey:@"D_icode"];
@@ -260,6 +261,21 @@ static int str2int(NSString* instr) {
 	//do not forget the CC
 	[currValues setObject:[NSNumber numberWithInt:ExecuteUnit.CC_ZF] forKey:@"CC_ZF"];
 	[currValues setObject:[NSNumber numberWithInt:ExecuteUnit.CC_SF] forKey:@"CC_SF"];
+	//... and Register File
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[REAX]] forKey:@"eax"];
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[RECX]] forKey:@"ecx"];
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[REDX]] forKey:@"edx"];
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[REBX]] forKey:@"ebx"];
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[RESI]] forKey:@"esi"];
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[REDI]] forKey:@"edi"];
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[REBP]] forKey:@"ebp"];
+	[currValues setObject:[NSNumber numberWithInt:DecodeUnit.RegisterFile[RESP]] forKey:@"esp"];
+	//and the Memory
+	[currValues setObject:[NSNumber numberWithInt:type] forKey:@"mem_use"];
+	if (type > 0) {
+		[currValues setObject:[NSNumber numberWithInt: MemoryUnit.mem_addr] forKey:@"mem_addr"];
+		[currValues setObject:[NSNumber numberWithInt: MemoryUnit.prev_datum] forKey:@"mem_datum"];
+	}
 	//save it in the log array
 	[sys_log addObject:currValues];
 }
@@ -269,6 +285,13 @@ static int str2int(NSString* instr) {
 	if ([sys_log count] <= 1)
 		return;
 	NSMutableDictionary* lastStep = [sys_log lastObject];
+	if ([[lastStep objectForKey:@"mem_use"] intValue] == 1) {
+		[MemoryUnit.dMemory removeObjectForKey:[lastStep objectForKey:@"mem_addr"]];
+	} else if ([[lastStep objectForKey:@"mem_use"] intValue] == 2) {
+		[MemoryUnit.dMemory setObject:[lastStep objectForKey:@"mem_datum"] forKey:[lastStep objectForKey:@"mem_addr"]];
+	}
+	[sys_log removeLastObject];
+	lastStep = [sys_log lastObject];
 	//F_register
 	F_predPC = [[lastStep objectForKey:@"F_predPC"] intValue];
 	//D_register
@@ -308,8 +331,15 @@ static int str2int(NSString* instr) {
 	//CC
 	ExecuteUnit.CC_ZF = [[lastStep objectForKey:@"CC_ZF"] intValue];
 	ExecuteUnit.CC_SF = [[lastStep objectForKey:@"CC_SF"] intValue];
-	//remove the last step
-	[sys_log removeLastObject];
+	//Register File
+	DecodeUnit.RegisterFile[REAX] = [[lastStep objectForKey:@"eax"] intValue];
+	DecodeUnit.RegisterFile[RECX] = [[lastStep objectForKey:@"ecx"] intValue];
+	DecodeUnit.RegisterFile[REDX] = [[lastStep objectForKey:@"edx"] intValue];
+	DecodeUnit.RegisterFile[REBX] = [[lastStep objectForKey:@"ebx"] intValue];
+	DecodeUnit.RegisterFile[RESI] = [[lastStep objectForKey:@"esi"] intValue];
+	DecodeUnit.RegisterFile[REDI] = [[lastStep objectForKey:@"edi"] intValue];
+	DecodeUnit.RegisterFile[REBP] = [[lastStep objectForKey:@"ebp"] intValue];
+	DecodeUnit.RegisterFile[RESP] = [[lastStep objectForKey:@"esp"] intValue];
 }
 
 - (void) setBreakpointAt: (int) iaddress {

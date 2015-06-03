@@ -38,6 +38,8 @@ static NSString* little2big(NSString* instr) {
 }
 
 @implementation MemoryPart
+@synthesize mem_addr;
+@synthesize prev_datum;
 @synthesize m_stat;
 @synthesize m_valM;
 @synthesize dMemory;
@@ -61,7 +63,9 @@ static NSString* little2big(NSString* instr) {
 	M_dstM = [[M_Register objectForKey:@"dstM"] intValue];
 }
 
-- (void) Calculate {
+- (int) Calculate {
+	int type = 0;	//for return value
+	prev_datum = 0;
 	//set default values
 	m_stat = M_stat;
 	m_icode = M_icode;
@@ -69,7 +73,7 @@ static NSString* little2big(NSString* instr) {
 	m_dstE = M_dstE;
 	m_dstM = M_dstM;
 	//set mem_read&write
-	int mem_read = 0, mem_write = 0, mem_addr = 0;
+	int mem_read = 0, mem_write = 0;
 	if(M_icode == IMRMOVL || M_icode == IPOPL || M_icode == IRET)
 		mem_read = 1;
 	if(M_icode == IRMMOVL || M_icode == IPUSHL || M_icode == ICALL)
@@ -89,9 +93,17 @@ static NSString* little2big(NSString* instr) {
 				m_valM = str2int(little2big((NSString*)tmp));
 			else
 				m_valM = [(NSNumber*)tmp intValue];
+			type = -1;
 		}
-		if (mem_write)
+		if (mem_write) {
+			type = 1;
+			if ([dMemory objectForKey:[NSNumber numberWithInt:mem_addr]] != nil) {
+				prev_datum = [[dMemory objectForKey:[NSNumber numberWithInt:mem_addr]] intValue];
+				type = 2;
+			}
 			[dMemory setObject:[NSNumber numberWithInt:M_valA] forKey:[NSNumber numberWithInt:mem_addr]];
+			
+		}
 	}
 	@catch (NSException *exception) {
 		dmem_error = 1;
@@ -100,6 +112,7 @@ static NSString* little2big(NSString* instr) {
 		printf("Memory Error\n");
 		m_stat = SADR;
 	}
+	return type;
 }
 
 - (void) WriteData: (NSMutableDictionary *) W_Register {

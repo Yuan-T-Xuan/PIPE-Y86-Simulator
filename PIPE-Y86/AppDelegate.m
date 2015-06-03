@@ -49,10 +49,11 @@ static NSString* int2reg(int input) {
 
 @implementation AppDelegate
 @synthesize core;
+@synthesize file_path;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 	// Insert code here to initialize your application
-	core = [PIPE new];
+	file_path = _path;
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -115,7 +116,12 @@ static NSString* int2reg(int input) {
 	[self.GUI_M_stall setIntValue:0];
 	//refresh clock cycle
 	[self.GUI_ClockCycle setIntValue: (int)[core.sys_log count]];
+	@try {
 	[self.GUI_FetchedInst setStringValue:[core.FetchUnit.iMemory objectForKey:[NSNumber numberWithInt:core.FetchUnit.f_pc]]];
+	}
+	@catch (NSException *exception) {
+	[self.GUI_FetchedInst setStringValue:@"00"];
+	}
 	//refresh observed memory
 	//not finished yet
 }
@@ -134,10 +140,14 @@ static NSString* int2reg(int input) {
 	}
 	const char* path = [[openPanel URL] fileSystemRepresentation];
 	printf("%s\n", path);
+	strcpy(file_path, path);
+	//get a new core
+	core = [PIPE new];
 	//load selected image
 	[core loadImage: (char *)path];
 	//refresh GUI
 	[self refreshGUI];
+	[self.GUI_FetchedInst setStringValue:@""];
 }
 
 - (IBAction)pushStep:(id)sender {
@@ -152,18 +162,61 @@ static NSString* int2reg(int input) {
 - (IBAction)pushBack:(id)sender {
 	[core singleStepBackward];
 	[self refreshGUI];
+	[self.GUI_FetchedInst setStringValue:@""];
 }
 
 - (IBAction)pushFullSpeed:(id)sender {
+	while ([[core.W_register objectForKey:@"stat"] intValue] == SAOK) {
+		//if switch_stop is true
+		if (core.switch_stop != 0) {
+			core.switch_stop = 0;
+			return;
+		}
+		//if there's a breakpoint
+		if ([core.breakpoints containsObject: [NSNumber numberWithInt:core.FetchUnit.f_pc]]) {
+			NSLog(@"A breakpoint detected.");
+			return;
+		}
+		//else, run normally
+		[core singleStepForward];
+		[self refreshGUI];
+	}
+}
+
+- (void)Slowly_background {
+	while ([[core.W_register objectForKey:@"stat"] intValue] == SAOK) {
+		//if switch_stop is true
+		if (core.switch_stop != 0) {
+			core.switch_stop = 0;
+			return;
+		}
+		//if there's a breakpoint
+		if ([core.breakpoints containsObject: [NSNumber numberWithInt:core.FetchUnit.f_pc]]) {
+			NSLog(@"A breakpoint detected.");
+			return;
+		}
+		//else, run normally
+		[core singleStepForward];
+		[self refreshGUI];
+		sleep(1);
+	}
 }
 
 - (IBAction)pushSlowly:(id)sender {
+	[self performSelectorInBackground:@selector(Slowly_background) withObject:nil];
 }
 
 - (IBAction)pushPause:(id)sender {
+	[core Pause];
 }
 
 - (IBAction)pushReset:(id)sender {
+	core = [PIPE new];
+	//load selected image
+	[core loadImage: file_path];
+	//refresh GUI
+	[self refreshGUI];
+	[self.GUI_FetchedInst setStringValue:@""];
 }
 
 - (IBAction)pushSet:(id)sender {

@@ -13,8 +13,11 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 {
 	PIPE* core;
+	char _path[200];
+	char* file_path;
 }
 @property PIPE* core;
+@property char* file_path;
 
 @property (weak) IBOutlet NSTextField *GUI_W_stat;
 @property (weak) IBOutlet NSTextField *GUI_W_icode;
