@@ -8,6 +8,21 @@
 
 #import "AppDelegate.h"
 
+static NSString* int2hex_str(int innum) {
+	char hex_num[] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+	int num = innum;
+	NSMutableString* inverse = [NSMutableString stringWithString:@""];
+	while (num > 0) {
+		[inverse appendFormat:@"%c", hex_num[num % 16]];
+		num = num / 16;
+	}
+	NSMutableString* return_result = [NSMutableString stringWithString:@"0x"];
+	for (int i = 0; i < [inverse length]; i++) {
+		[return_result appendFormat:@"%c", [inverse characterAtIndex:([inverse length]-i-1)]];
+	}
+	return return_result;
+}
+
 static int str2int(NSString* instr) {
 	int result = 0, length = 0;
 	length = (int)[instr length];
@@ -248,9 +263,108 @@ static NSString* int2reg(int input) {
 }
 
 - (IBAction)pushSysLog:(id)sender {
+	NSSavePanel* savePanel = [NSSavePanel savePanel];
+	long isOK = [savePanel runModal];
+	if (isOK != NSFileHandlingPanelOKButton)
+		return;
+	const char* path = [[savePanel URL] fileSystemRepresentation];
+	printf("saving to: %s\n", path);
+	NSMutableString* to_write = [NSMutableString stringWithString:@""];
+	int count = (int)[core.sys_log count];
+	int i = 0;
+	for (i = 0; i < count; i++) {
+		[to_write appendString:@"Cycle_"];
+		[to_write appendFormat:@"%d\n", i];
+		[to_write appendString:@"--------------------\n"];
+		[to_write appendString:@"FETCH:\n"];
+		[to_write appendString:@"\tF_predPC \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"F_predPC"]intValue])];
+		[to_write appendString:@"\n\nDECODE:\n"];
+		[to_write appendString:@"\tD_icode \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"D_icode"]intValue])];
+		[to_write appendString:@"\n\tD_ifun   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"D_ifun"]intValue])];
+		[to_write appendString:@"\n\tD_rA     \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"D_rA"]intValue])];
+		[to_write appendString:@"\n\tD_rB     \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"D_rB"]intValue])];
+		[to_write appendString:@"\n\tD_valC   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"D_valC"]intValue])];
+		[to_write appendString:@"\n\tD_valP   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"D_valP"]intValue])];
+		[to_write appendString:@"\n\nEXECUTE:\n"];
+		[to_write appendString:@"\tE_icode \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_icode"]intValue])];
+		[to_write appendString:@"\n\tE_ifun   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_ifun"]intValue])];
+		[to_write appendString:@"\n\tE_valC   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_valC"]intValue])];
+		[to_write appendString:@"\n\tE_valA   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_valA"]intValue])];
+		[to_write appendString:@"\n\tE_valB   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_valB"]intValue])];
+		[to_write appendString:@"\n\tE_dstE   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_dstE"]intValue])];
+		[to_write appendString:@"\n\tE_dstM   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_dstM"]intValue])];
+		[to_write appendString:@"\n\tE_srcA   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_srcA"]intValue])];
+		[to_write appendString:@"\n\tE_srcB   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"E_srcB"]intValue])];
+		[to_write appendString:@"\n\nMEMORY:\n"];
+		[to_write appendString:@"\tM_icode \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"M_icode"]intValue])];
+		[to_write appendString:@"\n\tM_Cnd   \t= "];
+		[to_write appendString:[[[core.sys_log objectAtIndex:i]objectForKey:@"M_Cnd"]intValue]==0?@"false":@"true"];
+		[to_write appendString:@"\n\tM_valE   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"M_valE"]intValue])];
+		[to_write appendString:@"\n\tM_valA   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"M_valA"]intValue])];
+		[to_write appendString:@"\n\tM_dstE   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"M_dstE"]intValue])];
+		[to_write appendString:@"\n\tM_dstM   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"M_dstM"]intValue])];
+		[to_write appendString:@"\n\nWRITE BACK:\n"];
+		[to_write appendString:@"\tW_icode \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"W_icode"]intValue])];
+		[to_write appendString:@"\n\tW_valE   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"W_valE"]intValue])];
+		[to_write appendString:@"\n\tW_valM   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"W_valM"]intValue])];
+		[to_write appendString:@"\n\tW_dstE   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"W_dstE"]intValue])];
+		[to_write appendString:@"\n\tW_dstM   \t= "];
+		[to_write appendString:int2hex_str([[[core.sys_log objectAtIndex:i]objectForKey:@"W_dstM"]intValue])];
+		[to_write appendString:@"\n\n"];
+	}
+	[to_write writeToFile:[NSString stringWithCString:path encoding:NSASCIIStringEncoding]
+		   atomically:NO
+		     encoding:NSASCIIStringEncoding
+			error:nil];
 }
 
 - (IBAction)pushObserve:(id)sender {
-	
+	NSString* returned_address = [self.GUI_address stringValue];
+	id got_data = nil;
+	if ([returned_address length] <= 2)
+		got_data = [core.MemoryUnit.dMemory objectForKey:[NSNumber numberWithInt:[self.GUI_address intValue]]];
+	else if ([[returned_address substringToIndex:2] isEqual: @"0x"])
+		got_data = [core.MemoryUnit.dMemory objectForKey:[NSNumber numberWithInt:str2int([returned_address substringFromIndex:2])]];
+	else
+		got_data = [core.MemoryUnit.dMemory objectForKey:[NSNumber numberWithInt:[self.GUI_address intValue]]];
+	if ([got_data isKindOfClass: [NSString class]])
+		[self.GUI_data setStringValue:(NSString*)got_data];
+	else
+		[self.GUI_data setIntValue:[got_data intValue]];
 }
 @end
+
+
+
+
+
+
+
+
+
+
