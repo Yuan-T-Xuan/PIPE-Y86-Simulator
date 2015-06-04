@@ -8,6 +8,21 @@
 
 #import "AppDelegate.h"
 
+static int str2int(NSString* instr) {
+	int result = 0, length = 0;
+	length = (int)[instr length];
+	int i;
+	for (i = 0; i < length; i++) {
+		if ([instr characterAtIndex:i] >= '0' && [instr characterAtIndex:i] <= '9')
+			result = result * 16 + [instr characterAtIndex:i] - '0';
+		else if ([instr characterAtIndex:i] >= 'A' && [instr characterAtIndex:i] <= 'F')
+			result = result * 16 + [instr characterAtIndex:i] + 10 - 'A';
+		else
+			result = result * 16 + [instr characterAtIndex:i] + 10 - 'a';
+	}
+	return result;
+}
+
 static NSString* int2stat(int input) {
 	if (input == 1)
 		return @"saok";
@@ -144,10 +159,12 @@ static NSString* int2reg(int input) {
 	//get a new core
 	core = [PIPE new];
 	//load selected image
-	[core loadImage: (char *)path];
+	NSString* returned_inst = [core loadImage: (char *)path];
 	//refresh GUI
 	[self refreshGUI];
 	[self.GUI_FetchedInst setStringValue:@""];
+	
+	[self.GUI_inst setString:returned_inst];
 }
 
 - (IBAction)pushStep:(id)sender {
@@ -213,21 +230,27 @@ static NSString* int2reg(int input) {
 - (IBAction)pushReset:(id)sender {
 	core = [PIPE new];
 	//load selected image
-	[core loadImage: file_path];
+	NSString* returned_inst = [core loadImage: file_path];
 	//refresh GUI
 	[self refreshGUI];
 	[self.GUI_FetchedInst setStringValue:@""];
+	[self.GUI_inst setString:returned_inst];
 }
 
 - (IBAction)pushSet:(id)sender {
+	NSString* returned_address = [self.GUI_breakpoint stringValue];
+	[core setBreakpointAt:str2int([returned_address substringFromIndex:2])];
 }
 
 - (IBAction)pushRemove:(id)sender {
+	NSString* returned_address = [self.GUI_breakpoint stringValue];
+	[core removeBreakpointFrom:str2int([returned_address substringFromIndex:2])];
 }
 
 - (IBAction)pushSysLog:(id)sender {
 }
 
 - (IBAction)pushObserve:(id)sender {
+	
 }
 @end

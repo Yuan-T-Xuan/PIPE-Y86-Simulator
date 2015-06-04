@@ -101,7 +101,7 @@ static int str2int(NSString* instr) {
 	return self;
 }
 
-- (void) loadImage: (char*) ifilePath {
+- (NSMutableString*) loadImage: (char*) ifilePath {
 	//prepare insList, breakpoints and sys_log
 	insList = [NSMutableArray new];
 	breakpoints = [NSMutableSet new];
@@ -111,13 +111,16 @@ static int str2int(NSString* instr) {
 	fp = fopen(ifilePath, "r");
 	if (fp == NULL) {
 		NSLog(@"No image has been read.");
-		return;
+		return [NSMutableString stringWithString:@""];
 	}
 	char tmp[100];
 	int i, address;
 	NSMutableString *inst = nil, *tmp_address;
 	//for debug
 	int counter = 0;
+	//
+	int end_of_line = 0;
+	NSMutableString* return_result = [NSMutableString new];
 	//
 	while (fgets(tmp, 100, fp) != NULL) {
 		//for debug
@@ -129,6 +132,7 @@ static int str2int(NSString* instr) {
 				//for debug
 				//printf("'|' Found\n");
 				//
+				end_of_line = i;
 				goto END_LOOP;
 			}
 			if (tmp[i] == '0')
@@ -158,17 +162,23 @@ static int str2int(NSString* instr) {
 		for (; i < strlen(tmp); i++) {
 			if ((tmp[i]>='0'&&tmp[i]<='9') || (tmp[i]>='A'&&tmp[i]<='F') || (tmp[i]>='a'&&tmp[i]<='f'))
 				[inst appendFormat:@"%c", tmp[i]];
-			else
+			else {
+				end_of_line = i;
 				break;
+			}
 		}
 		[insList addObject: [[instruction alloc] initAddress:address andInstruction:inst]];
 		//for debug
 		printf("One Added\n");
 		//
+		[return_result appendString:[[NSString stringWithUTF8String:tmp] substringToIndex:end_of_line]];
+		[return_result appendString:[NSString stringWithUTF8String:"\n"]];
+		//
 		END_LOOP:
 		i = i;	//no use ...
 	}
 	[FetchUnit InitInstructionMemory:insList];
+	return return_result;
 }
 
 - (void) singleStepForward {

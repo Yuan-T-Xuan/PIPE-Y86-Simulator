@@ -19,6 +19,8 @@
 @property PIPE* core;
 @property char* file_path;
 
+@property (unsafe_unretained) IBOutlet NSTextView *GUI_inst;
+
 @property (weak) IBOutlet NSTextField *GUI_W_stat;
 @property (weak) IBOutlet NSTextField *GUI_W_icode;
 @property (weak) IBOutlet NSTextField *GUI_W_valE;

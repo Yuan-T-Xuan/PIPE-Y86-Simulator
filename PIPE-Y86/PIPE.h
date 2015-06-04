@@ -65,7 +65,7 @@
 @property (readonly) int W_stall;
 
 - (id) init;
-- (void) loadImage: (char*) ifilePath;
+- (NSMutableString*) loadImage: (char*) ifilePath;
 - (void) singleStepForward;
 - (void) singleStepBackward;
 - (void) setBreakpointAt: (int) iaddress;
