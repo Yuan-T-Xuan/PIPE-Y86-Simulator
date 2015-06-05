@@ -14,6 +14,7 @@
 @synthesize e_dstE;
 @synthesize CC_ZF;
 @synthesize CC_SF;
+@synthesize CC_OF;
 
 - (id) init {
 	if (self = [super init]) {
@@ -21,6 +22,7 @@
 		e_dstE = RNONE;
 		CC_ZF = 0;
 		CC_SF = 0;
+		CC_OF = 0;
 	}
 	return self;
 }
@@ -82,6 +84,24 @@
 		else
 			CC_ZF = 0;
 		CC_SF = (e_valE >> 31) & 0x1;
+		//set CC_OF
+		if (alufun == ALUADD) {
+			if (aluA > 0 && aluB > 0 && e_valE <= 0)
+				CC_OF = 1;
+			else if (aluA < 0 && aluB < 0 && e_valE >= 0)
+				CC_OF = 1;
+			else
+				CC_OF = 0;
+				
+		} else if (alufun == ALUSUB) {
+			if (aluA < 0 && aluB > 0 && e_valE <= 0)
+				CC_OF = 1;
+			else if (aluA > 0 && aluB < 0 && e_valE >= 0)
+				CC_OF = 1;
+			else
+				CC_OF = 0;
+		} else
+			CC_OF = 0;
 	}
 	//set Condition
 	e_Cnd = 0;

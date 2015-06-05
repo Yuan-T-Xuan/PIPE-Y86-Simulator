@@ -18,13 +18,14 @@
 	//for output
 	int e_stat, e_icode, e_Cnd, e_valE, e_valA, e_dstM, e_dstE;
 	//stored CC
-	int CC_ZF, CC_SF;
+	int CC_ZF, CC_SF, CC_OF;
 }
 @property (readonly) int e_Cnd;
 @property (readonly) int e_valE;
 @property (readonly) int e_dstE;
 @property int CC_ZF;
 @property int CC_SF;
+@property int CC_OF;
 - (id) init;
 - (void) GetData: (NSMutableDictionary *) E_Register
 	  W_stat: (int) iW_stat m_stat: (int) im_stat;

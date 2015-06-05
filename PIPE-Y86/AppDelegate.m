@@ -137,6 +137,7 @@ static NSString* int2reg(int input) {
 	//refresh condition codes
 	[self.GUI_ZF setIntValue: core.ExecuteUnit.CC_ZF];
 	[self.GUI_SF setIntValue: core.ExecuteUnit.CC_SF];
+	[self.GUI_OF setIntValue: core.ExecuteUnit.CC_OF];
 	//refresh control logic
 	[self.GUI_F_bubble setIntValue:0];
 	[self.GUI_F_stall setIntValue: core.F_stall];

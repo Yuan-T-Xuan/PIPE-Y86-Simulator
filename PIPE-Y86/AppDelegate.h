@@ -70,6 +70,7 @@
 @property (weak) IBOutlet NSTextField *GUI_ebp;
 @property (weak) IBOutlet NSTextField *GUI_ZF;
 @property (weak) IBOutlet NSTextField *GUI_SF;
+@property (weak) IBOutlet NSTextField *GUI_OF;
 
 @property (weak) IBOutlet NSTextField *GUI_F_stall;
 @property (weak) IBOutlet NSTextField *GUI_F_bubble;
