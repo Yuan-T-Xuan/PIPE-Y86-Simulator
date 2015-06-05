@@ -57,6 +57,8 @@
 
 @property (weak) IBOutlet NSTextField *GUI_F_predPC;
 
+@property (weak) IBOutlet NSTextField *GUI_show_breakpoints;
+
 @property (weak) IBOutlet NSTextField *GUI_breakpoint;
 @property (weak) IBOutlet NSTextField *GUI_eax;
 @property (weak) IBOutlet NSTextField *GUI_ecx;
@@ -82,6 +84,19 @@
 @property (weak) IBOutlet NSTextField *GUI_FetchedInst;
 @property (weak) IBOutlet NSTextField *GUI_address;
 @property (weak) IBOutlet NSTextField *GUI_data;
+
+//buttons
+@property (weak) IBOutlet NSButton *BTN_Load;
+@property (weak) IBOutlet NSButton *BTN_Step;
+@property (weak) IBOutlet NSButton *BTN_Back;
+@property (weak) IBOutlet NSButton *BTN_FullSpeed;
+@property (weak) IBOutlet NSButton *BTN_Slowly;
+@property (weak) IBOutlet NSButton *BTN_Pause;
+@property (weak) IBOutlet NSButton *BTN_Reset;
+@property (weak) IBOutlet NSButton *BTN_Set;
+@property (weak) IBOutlet NSButton *BTN_Remove;
+@property (weak) IBOutlet NSButton *BTN_SystemLog;
+@property (weak) IBOutlet NSButton *BTN_Observe;
 
 - (IBAction)pushLoad:(id)sender;
 - (IBAction)pushStep:(id)sender;
