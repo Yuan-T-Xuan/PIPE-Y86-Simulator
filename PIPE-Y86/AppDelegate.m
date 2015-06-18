@@ -233,11 +233,13 @@ static NSString* int2reg(int input) {
 		//if switch_stop is true
 		if (core.switch_stop != 0) {
 			core.switch_stop = 0;
+			[self.BTN_Slowly setEnabled:YES];
 			return;
 		}
 		//if there's a breakpoint
 		if ([core.breakpoints containsObject: [NSNumber numberWithInt:core.FetchUnit.f_pc]]) {
 			NSLog(@"A breakpoint detected.");
+			[self.BTN_Slowly setEnabled:YES];
 			return;
 		}
 		//else, run normally
@@ -245,10 +247,12 @@ static NSString* int2reg(int input) {
 		[self refreshGUI];
 		sleep(1);
 	}
+	[self.BTN_Slowly setEnabled:YES];
 }
 
 - (IBAction)pushSlowly:(id)sender {
 	[self performSelectorInBackground:@selector(Slowly_background) withObject:nil];
+	[self.BTN_Slowly setEnabled:NO];
 }
 
 - (IBAction)pushPause:(id)sender {
